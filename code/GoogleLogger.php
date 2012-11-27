@@ -31,11 +31,11 @@ class GoogleLogger extends Extension {
 		
 		switch($code) {
 			case null: self::$google_analytics_code = null; break;
-			case 'SiteConfig': Object::add_extension('SiteConfig', 'GoogleConfig'); break;
+			case 'SiteConfig': SiteConfig::add_extension('GoogleConfig'); break;
 			default: self::$google_analytics_code = $code;
 		}
 
-		Object::add_extension('ContentController', 'GoogleLogger');
+		ContentController::add_extension('GoogleLogger');
 
 		if(substr(GoogleAnalyzer::get_sapphire_version(), 0, 3) == '2.3') Director::add_callback(array("GoogleLogger","onAfterInit23"));
 	}
