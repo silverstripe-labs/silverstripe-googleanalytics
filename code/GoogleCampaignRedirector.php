@@ -54,27 +54,31 @@ class GoogleCampaignRedirector extends RedirectorPage {
 		}
 		return $ret;
 	}
-}
-
-class GoogleCampaignRedirector_Controller extends RedirectorPage_Controller {
 	
-	public function init() {
-		//Override the redirector behaviour to point to the GA-enabled link
-		if($link = $this->redirectionLink()) {
-			$this->redirect(self::addQueryString($link,$this->getQueryString()), 301);
-			return;
+	/**
+	 * @override
+	 * @return the link with query string
+	 */
+	public function redirectionLink() {
+		if($link = parent::redirectionLink()) {
+			return self::addQueryString($link,$this->getQueryString());
 		}
+		return null;
 	}
 	
 	/**
 	 * Helper function to add a query string to a URL in different ways depending on
 	 * the original URL. I.e. avoid example.com?a=b&c=d?e=f&g=h
 	 */
-	public static function addQueryString($link, $query){
-		if(strpos("?", $link) === FALSE){
+	private static function addQueryString($link, $query){
+		if(strpos($link, "?") === FALSE){
 			return "$link?$query";
 		} else {
 			return "$link&$query";
 		}
 	}
+}
+
+class GoogleCampaignRedirector_Controller extends RedirectorPage_Controller {
+	
 }
