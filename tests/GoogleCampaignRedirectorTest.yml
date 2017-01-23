@@ -1,0 +1,23 @@
+Page:
+   dest:
+      Title: Redirection Dest
+      URLSegment: redirection-dest
+GoogleCampaignRedirector:
+   witheverything:
+      Title: Good External Redirect With All Fields
+      URLSegment: all-fields
+      RedirectionType: External
+      ExternalURL: http://www.example.com/?a=b
+      CampaignSource: source
+      CampaignMedium: medium
+      CampaignTerm: term
+      CampaignContent: content
+      CampaignName: name
+   withminimalfields:
+      Title: Good Internal Redirect With All Fields
+      URLSegment: minimal-fields
+      RedirectionType: Internal
+      LinkTo: =>Page.dest
+      CampaignSource: source
+      CampaignMedium: medium
+      CampaignName: name
